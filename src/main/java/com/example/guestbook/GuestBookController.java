@@ -13,8 +13,6 @@ public class GuestBookController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<GuestBookEntry> allEntries = guestBookDao.allEntries();
-        request.setAttribute("entries", allEntries);
         request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
     }
 
@@ -23,5 +21,10 @@ public class GuestBookController extends HttpServlet {
         String nick = request.getParameter("nick");
         String content = request.getParameter("content");
         guestBookDao.saveNewEntry(new GuestBookEntry(nick, content));
+
+        List<GuestBookEntry> allEntries = guestBookDao.allEntries();
+        request.setAttribute("entries", allEntries);
+
+        request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
     }
 }
