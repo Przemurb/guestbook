@@ -21,7 +21,7 @@ public class GuestBookDao {
     }
 
     List<GuestBookEntry> allEntries() {
-        final String sql = "SELECT nick, content FROM entry";
+        final String sql = "SELECT nick, content FROM entry ORDER BY id DESC";
         List<GuestBookEntry> entriesList = new ArrayList<>();
         try (
                 Connection connection = dataSource.getConnection();
