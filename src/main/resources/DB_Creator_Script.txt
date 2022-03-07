@@ -1,0 +1,9 @@
+DROP DATABASE IF EXISTS guestbook;
+CREATE DATABASE guestbook;
+USE guestbook;
+
+CREATE TABLE entry (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nick VARCHAR(25) NOT NULL,
+    content VARCHAR(2000) NOT NULL
+);
