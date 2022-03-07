@@ -26,17 +26,31 @@ public class GuestBookDao {
         try (
                 Connection connection = dataSource.getConnection();
                 Statement statement = connection.createStatement()
-              ){
+        ) {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 String nick = resultSet.getString("nick");
                 String content = resultSet.getString("content");
                 entriesList.add(new GuestBookEntry(nick, content));
             }
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return entriesList;
     }
+
+    void saveNewEntry(GuestBookEntry entry) {
+        final String sql = String.format("INSERT INTO entry (nick, content) VALUES ('%s', '%s')",
+                entry.getNick(), entry.getContent());
+        try (
+                Connection connection = dataSource.getConnection();
+                Statement statement = connection.createStatement()
+        ) {
+            statement.executeUpdate(sql);
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
