@@ -27,7 +27,7 @@
     <c:if test="${fn:length(requestScope.entries) == 0}">
         <h3>Nie ma jeszcze żadnego wpisu. Dodaj cos od siebie...</h3>
     </c:if>
-    <h1>Wasze wpisy</h1>
+    <h1>Wasze wpisy (${fn:length(requestScope.entries)})</h1>
         <c:forEach var="entry" items="${requestScope.entries}">
             <section class="entry">
                 <h3>Autor: <c:out value="${entry.nick}"/></h3>
