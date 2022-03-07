@@ -1,5 +1,5 @@
 <Context path="/app">
-    <Resource name="jdbc/cookbook"
+    <Resource name="jdbc/guestbook"
               auth="Container"
               type="javax.sql.DataSource"
               factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
