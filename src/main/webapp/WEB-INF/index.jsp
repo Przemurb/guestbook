@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
     <title>Księga gości</title>
@@ -23,12 +24,15 @@
         <button>Wyślij</button>
     </fieldset>
 </form>
+    <c:if test="${fn:length(requestScope.entries) == 0}">
+        <h3>Nie ma jeszcze żadnego wpisu. Dodaj cos od siebie...</h3>
+    </c:if>
     <h1>Wasze wpisy</h1>
-    <c:forEach var="entry" items="${requestScope.entries}">
-        <section class="entry">
-            <h3>Autor: <c:out value="${entry.nick}"/></h3>
-            <p><c:out value="${entry.content}"/></p>
-        </section>
-    </c:forEach>
+        <c:forEach var="entry" items="${requestScope.entries}">
+            <section class="entry">
+                <h3>Autor: <c:out value="${entry.nick}"/></h3>
+                <p><c:out value="${entry.content}"/></p>
+            </section>
+        </c:forEach>
 </body>
 </html>
